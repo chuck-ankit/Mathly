@@ -326,13 +326,6 @@
 .g3d-hint > span {
   white-space: nowrap;
 }
-/* Inside a very narrow stage, drop the least important hint segments
-   instead of overlapping the badge. */
-@container (max-width: 560px) {
-  .g3d-hint span:nth-of-type(n + 4) {
-    display: none;
-  }
-}
 
 .g3d-hint__dot {
   width: 3px;
@@ -362,7 +355,7 @@
 
 @media (min-width: 901px) and (max-width: 1120px) {
   .g3d-layout {
-    grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
     gap: var(--s-4);
   }
 }
@@ -387,5 +380,11 @@
 @supports (container-type: inline-size) {
   .g3d-stage {
     container-type: inline-size;
+  }
+}
+
+@container (max-width: 560px) {
+  .g3d-hint {
+    display: none;
   }
 }
