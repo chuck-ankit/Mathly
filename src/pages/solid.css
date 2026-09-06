@@ -1,0 +1,205 @@
+/* ---------- Solids gallery ---------- */
+
+.solid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-5);
+}
+
+.solid-grid--compact {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.solid-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-1);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.solid-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg, 0 10px 30px rgba(0, 0, 0, 0.25));
+}
+
+.solid-card__thumb {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--bg-0);
+  display: block;
+  width: 100%;
+  aspect-ratio: 280 / 170;
+}
+
+.solid-card__thumb .g3d-canvas {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.solid-card__thumb-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+.solid-card h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.solid-card p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.solid-card__formulas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  margin-top: auto;
+}
+
+.solid-card__formula {
+  font-size: 0.85rem;
+}
+
+.solid-card__formula .katex {
+  font-size: 0.92em;
+}
+
+.solid-card__formulas .badge {
+  font-family: var(--font-math, 'KaTeX_Math', serif);
+  font-size: 0.72rem;
+  padding: 0.15rem 0.45rem;
+}
+
+.solid-group-blurb {
+  margin-top: var(--s-3);
+  font-size: 0.9rem;
+}
+
+.solid-empty {
+  margin-top: var(--s-5);
+  text-align: center;
+}
+
+/* ---------- Detail page ---------- */
+
+.solid-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
+  gap: var(--s-6);
+  margin-top: var(--s-4);
+  align-items: start;
+}
+
+.solid-detail__stage {
+  position: relative;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-1);
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  max-height: 620px;
+  width: 100%;
+}
+
+.solid-detail__stage .g3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+  display: block;
+}
+
+.solid-detail__stage .g3d-canvas:active {
+  cursor: grabbing;
+}
+
+.solid-detail__hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: var(--s-2) var(--s-3);
+  font-size: 0.78rem;
+  color: var(--text-2);
+  background: var(--bg-glass);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  pointer-events: none;
+}
+
+.solid-detail__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.solid-detail__formulas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.solid-formula {
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.solid-formula__label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  margin-bottom: var(--s-1);
+}
+
+.solid-detail__notice h2,
+.solid-related h2 {
+  font-size: 1.1rem;
+  margin: 0 0 var(--s-2);
+}
+
+.solid-detail__notice p {
+  margin: 0;
+  color: var(--text-1);
+}
+
+.solid-detail__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.solid-related {
+  margin-top: var(--s-7);
+}
+
+.solid-related .solid-grid {
+  margin-top: var(--s-4);
+}
+
+@media (max-width: 900px) {
+  .solid-detail {
+    grid-template-columns: 1fr;
+  }
+}

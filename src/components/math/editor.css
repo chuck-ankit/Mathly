@@ -1,0 +1,239 @@
+/* ---------------- Equation editor ---------------- */
+
+.eq-editor {
+  --eq-pad-x: var(--s-4);
+  --eq-pad-y: var(--s-3);
+  width: 100%;
+}
+
+.eq-editor--large {
+  --eq-pad-x: var(--s-5);
+  --eq-pad-y: var(--s-4);
+}
+
+.eq-editor__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: var(--bg-1);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--r-md);
+  min-height: 52px;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.eq-editor__field:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--glow-accent);
+}
+
+.eq-editor--large .eq-editor__field {
+  min-height: 64px;
+  border-radius: var(--r-lg);
+}
+
+/* The stage is the single box both layers live in: the scrollable background
+   highlight and the transparent textarea stack inside it with IDENTICAL
+   padding/typography, so their text never drifts apart. The stage sizes itself
+   from the in-flow background (which carries the same box metrics), so the
+   absolutely-positioned textarea always exactly matches it. */
+.eq-editor__stage {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.eq-editor__bg,
+.eq-editor__ta {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  padding: var(--eq-pad-y) var(--eq-pad-x);
+}
+
+.eq-editor--large .eq-editor__bg,
+.eq-editor--large .eq-editor__ta {
+  font-size: 21px;
+}
+
+.eq-editor__bg {
+  color: var(--text-1);
+  pointer-events: none;
+  overflow: hidden;
+  max-height: 96px;
+}
+
+.eq-editor__ta {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: transparent;
+  caret-color: var(--accent);
+  overflow: auto;
+  scrollbar-width: none;
+}
+.eq-editor__ta::-webkit-scrollbar {
+  display: none;
+}
+
+.eq-editor__placeholder {
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  user-select: none;
+}
+
+.eq-editor__caret-fill {
+  display: inline-block;
+  width: 2px;
+}
+
+/* Token colors — note: only color/font-weight changes that do NOT alter the
+   advance width of a glyph are allowed here, otherwise the highlight would
+   drift from the real textarea text. */
+.tk-num { color: var(--accent-strong); }
+.tk-fn { color: var(--curve-3); }
+.tk-var { color: var(--text-1); }
+.tk-const { color: var(--gold); }
+.tk-op { color: var(--text-3); }
+.tk-paren { color: var(--text-3); }
+.tk-eq { color: var(--curve-1); }
+.tk-err {
+  background: color-mix(in srgb, var(--bad) 22%, transparent);
+  color: var(--bad);
+  border-radius: 3px;
+  text-decoration: underline wavy color-mix(in srgb, var(--bad) 55%, transparent) 1px;
+  text-underline-offset: 3px;
+}
+
+/* Autocomplete popup */
+.eq-editor__popup {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: var(--eq-pad-x);
+  z-index: 20;
+  background: var(--bg-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-2);
+  padding: var(--s-1);
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.eq-editor__sugg {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-2) var(--s-3);
+  border: none;
+  background: transparent;
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-1);
+  text-align: left;
+  cursor: pointer;
+}
+.eq-editor__sugg:hover,
+.eq-editor__sugg:focus-visible {
+  background: var(--accent-soft);
+}
+
+.eq-editor__sugg-kind {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+
+.eq-editor__kbd-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-2);
+  color: var(--text-2);
+  font-size: 17px;
+  display: grid;
+  place-items: center;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.eq-editor__kbd-btn:hover {
+  color: var(--text-1);
+  border-color: var(--accent);
+}
+.eq-editor__kbd-btn.is-active {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+/* ---------------- Math keyboard ---------------- */
+
+.math-kbd {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--dur) var(--ease-out);
+}
+
+.math-kbd--open {
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.math-kbd__hint {
+  margin: var(--s-2) 0 0;
+  font-size: 0.78rem;
+  color: var(--text-2);
+  text-align: center;
+}
+
+.math-kbd__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--s-1);
+  margin-top: var(--s-2);
+}
+
+@media (min-width: 640px) {
+  .math-kbd__grid {
+    grid-template-columns: repeat(9, 1fr);
+  }
+}
+
+.math-kbd__key {
+  min-height: 44px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-1);
+  color: var(--text-1);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.math-kbd__key:hover,
+.math-kbd__key:active {
+  background: var(--bg-3);
+}
+.math-kbd__key:active {
+  transform: scale(0.94);
+}
+.math-kbd__key--wide {
+  grid-column: span 2;
+}

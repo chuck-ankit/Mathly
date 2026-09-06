@@ -1,0 +1,80 @@
+
+> mathly@0.1.0 dev
+> vite
+
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m266[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[2m2:51:56 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/GraphWorkspace.tsx, /src/pages/Playground.tsx, /src/pages/Home.tsx, /src/components/graph/GraphThumb.tsx[22m
+[2m2:52:02 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/GraphWorkspace.tsx, /src/pages/Playground.tsx, /src/pages/Home.tsx, /src/components/graph/GraphThumb.tsx[22m
+[2m2:52:34 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/GraphWorkspace.tsx, /src/pages/Playground.tsx, /src/pages/Home.tsx, /src/components/graph/GraphThumb.tsx, /src/pages/Explore.tsx, /src/components/math/EquationEditor.tsx[22m
+[2m2:52:44 am[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/lib/math/evaluator.ts[22m
+[2m2:53:03 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/Explore.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/GraphWorkspace.tsx, /src/pages/Playground.tsx, /src/pages/Home.tsx, /src/components/graph/GraphThumb.tsx[22m
+[2m2:53:33 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/Explore.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/GraphWorkspace.tsx, /src/pages/Playground.tsx, /src/pages/Home.tsx, /src/components/graph/GraphThumb.tsx[22m
+[2m2:53:44 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/Explore.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/GraphWorkspace.tsx, /src/pages/Playground.tsx, /src/pages/Home.tsx, /src/components/graph/GraphThumb.tsx, /src/components/math/EquationEditor.tsx[22m
+[2m2:54:16 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/GraphWorkspace.tsx, /src/pages/Playground.tsx, /src/pages/Home.tsx, /src/components/graph/GraphThumb.tsx[22m
+[2m2:55:03 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/EquationEditor.tsx[22m
+[2m2:55:21 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/MathKeyboard.tsx[22m
+[2m2:55:53 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/editor.css[22m
+[2m3:49:39 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/EquationEditor.tsx[22m
+[2m4:00:06 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.tsx[22m
+[2m4:00:19 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/layout/Header.tsx[22m
+[2m4:36:40 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx[22m
+[2m4:36:50 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Graph3D.tsx[22m
+[2m4:37:25 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Home.tsx[22m
+[2m4:37:48 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Home.tsx[22m
+[2m4:41:22 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx[22m
+[2m4:42:03 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx[22m
+[2m4:42:19 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/solid.css[22m
+[2m4:49:33 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/EquationEditor.tsx[22m
+[2m4:50:31 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/EquationEditor.tsx[22m
+[2m4:52:28 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/Explore.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/GraphWorkspace.tsx, /src/pages/Playground.tsx, /src/pages/Home.tsx, /src/components/graph/GraphThumb.tsx, /src/pages/Graph3D.tsx, /src/components/math/EquationEditor.tsx[22m
+[2m4:54:19 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx[22m
+[2m5:05:21 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Home.tsx[22m
+[2m5:48:06 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Graph3D.tsx, /src/pages/Home.tsx[22m
+[2m5:51:10 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m5:51:23 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m5:51:41 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m5:51:48 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m5:52:01 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m5:53:47 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Graph3D.tsx, /src/pages/Home.tsx[22m
+[2m5:54:17 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Graph3D.tsx, /src/pages/Home.tsx[22m
+[2m5:56:14 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Graph3D.tsx, /src/pages/Home.tsx[22m
+[2m6:04:16 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Graph3D.tsx, /src/pages/Home.tsx[22m
+[2m6:05:13 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Graph3D.tsx, /src/pages/Home.tsx[22m
+[2m6:14:45 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Graph3D.tsx, /src/pages/Home.tsx[22m
+[2m6:15:03 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Graph3D.tsx, /src/pages/Home.tsx[22m
+[2m6:17:49 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m6:18:10 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m7:00:15 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m7:00:19 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m7:00:24 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m7:00:35 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m7:00:38 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m7:00:42 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m7:00:54 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m7:01:24 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/EquationEditor.tsx[22m
+[2m7:01:39 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/editor.css[22m
+[2m7:01:46 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Graph3D.tsx[22m
+[2m7:01:49 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/editor.css[22m
+[2m7:02:04 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/graph3d.css[22m
+[2m11:50:22 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/graph3d.css[22m
+[2m11:50:46 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m11:52:50 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/Explore.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/Home.tsx[22m
+[2m11:53:23 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/Explore.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/Home.tsx[22m
+[2m11:57:08 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Daily.tsx, /src/pages/Explore.tsx, /src/pages/ExperimentDetail.tsx, /src/pages/Home.tsx[22m
+[2m11:57:35 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m11:57:55 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m11:58:08 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m11:58:19 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m11:58:31 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m11:58:47 am[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m12:00:59 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/math/editor.css[22m
+[2m12:02:02 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx, /src/pages/Home.tsx[22m
+[2m12:03:29 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m12:03:36 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m12:03:42 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/graph3d/Graph3DCanvas.tsx[22m
+[2m12:03:48 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx[22m
+[2m12:03:52 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/Solids.tsx[22m

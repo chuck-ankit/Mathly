@@ -1,0 +1,163 @@
+/* ============================================================
+   Mathly design tokens
+   Dark mode is the first-class theme; light mode is tuned by hand.
+   ============================================================ */
+
+:root {
+  /* Typography */
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Spacing */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --r-full: 999px;
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 480ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  /* Layout */
+  --header-h: 60px;
+  --max-w: 1200px;
+  --radius-4: 20px;
+}
+
+/* ------------------------- Dark theme ------------------------- */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-0: #0a0e1a;
+  --bg-1: #10162b;
+  --bg-2: #171f3a;
+  --bg-3: #1e2847;
+  --bg-glass: rgba(16, 22, 43, 0.72);
+
+  --border: rgba(150, 163, 208, 0.13);
+  --border-strong: rgba(150, 163, 208, 0.26);
+
+  --text-1: #eef1fa;
+  --text-2: #b7bed6;
+  --text-3: #7f89ab;
+
+  --accent: #7483ff;
+  --accent-strong: #8d99ff;
+  --accent-soft: rgba(116, 131, 255, 0.14);
+  --accent-ink: #0b0e1a;
+  --on-accent: #f4f5ff;
+
+  --gold: #f2b84b;
+  --gold-soft: rgba(242, 184, 75, 0.14);
+  --good: #58d68d;
+  --bad: #ff7a7a;
+  --warn: #ffb84d;
+
+  /* Graph surface */
+  --graph-bg: #0c1224;
+  --grid-line: rgba(143, 158, 204, 0.09);
+  --grid-line-strong: rgba(143, 158, 204, 0.17);
+  --axis-line: rgba(205, 214, 240, 0.55);
+  --axis-label: #7f89ab;
+  --graph-tick: rgba(205, 214, 240, 0.9);
+
+  /* Curve palette — tuned for dark graph paper */
+  --curve-0: #ff6f61;
+  --curve-1: #3ec9b2;
+  --curve-2: #ffc65c;
+  --curve-3: #5e9cff;
+  --curve-4: #b18cff;
+  --curve-5: #6cc97c;
+  --curve-6: #ff8f5e;
+  --curve-7: #f27bb8;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.38);
+  --shadow-3: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+  --glow-accent: 0 0 0 3px rgba(116, 131, 255, 0.25);
+}
+
+/* ------------------------- Light theme ------------------------ */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-0: #f6f4ef;
+  --bg-1: #ffffff;
+  --bg-2: #f1eee7;
+  --bg-3: #e9e4d8;
+  --bg-glass: rgba(255, 255, 255, 0.78);
+
+  --border: rgba(40, 48, 80, 0.12);
+  --border-strong: rgba(40, 48, 80, 0.24);
+
+  --text-1: #1c2233;
+  --text-2: #4c5570;
+  --text-3: #8a92ab;
+
+  --accent: #5b66e8;
+  --accent-strong: #4752d8;
+  --accent-soft: rgba(91, 102, 232, 0.12);
+  --accent-ink: #ffffff;
+  --on-accent: #ffffff;
+
+  --gold: #d99a1f;
+  --gold-soft: rgba(217, 154, 31, 0.14);
+  --good: #2e9e5b;
+  --bad: #d64545;
+  --warn: #c47f10;
+
+  --graph-bg: #fdfcf9;
+  --grid-line: rgba(30, 40, 80, 0.08);
+  --grid-line-strong: rgba(30, 40, 80, 0.15);
+  --axis-line: rgba(40, 50, 90, 0.55);
+  --axis-label: #8a92ab;
+  --graph-tick: rgba(40, 50, 90, 0.85);
+
+  --curve-0: #e25544;
+  --curve-1: #0f9c86;
+  --curve-2: #d99a1f;
+  --curve-3: #3d78e0;
+  --curve-4: #8a5cf5;
+  --curve-5: #3aa757;
+  --curve-6: #e06e2a;
+  --curve-7: #cf4f9e;
+
+  --shadow-1: 0 1px 2px rgba(30, 35, 60, 0.08);
+  --shadow-2: 0 8px 24px rgba(30, 35, 60, 0.1);
+  --shadow-3: 0 20px 60px rgba(30, 35, 60, 0.16);
+
+  --glow-accent: 0 0 0 3px rgba(91, 102, 232, 0.2);
+}
+
+/* Reduced motion — collapse all animation durations */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur: 1ms;
+    --dur-slow: 1ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
