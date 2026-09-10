@@ -64,7 +64,23 @@ export function GraphCanvas({
       onViewportChange: (vp) => cbRef.current.onViewportChange?.(vp),
     });
     engineRef.current = engine;
+
+    // Keep the canvas sized to its wrapper even when the wrapper resizes
+    // without a window resize (responsive breakpoints, layout shifts).
+    const wrap = wrapRef.current;
+    let ro: ResizeObserver | undefined;
+    if (wrap && typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(() => {
+        const rect = wrap.getBoundingClientRect();
+        if (Number.isFinite(rect.width) && rect.width > 0 && rect.height > 0) {
+          engine.resize(rect.width, rect.height);
+        }
+      });
+      ro.observe(wrap);
+    }
+
     return () => {
+      ro?.disconnect();
       engine.destroy();
       engineRef.current = null;
     };

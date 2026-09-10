@@ -104,8 +104,10 @@ function negate(n: MathNode): MathNode {
   if (n.type === 'binary') {
     if (n.op === '+' || n.op === '-') return sumToNode(negateTerms(collect(n)));
     if (n.op === '*') {
+      // Wrap the (positive) product in a unary minus — never re-enter
+      // productToNode with a flipped sign or we bounce forever.
       const e = extract(n);
-      return productToNode(-e.coeff, e.factors);
+      return { type: 'unary', op: '-', operand: productToNode(e.coeff, e.factors) };
     }
   }
   return { type: 'unary', op: '-', operand: n };
@@ -182,7 +184,7 @@ function productToNode(coeff: number, factors: MathNode[]): MathNode {
   if (merged.length === 0) return num(coeff);
   if (coeff === 1) return merged.length === 1 ? merged[0] : productChain(merged);
   if (coeff === -1) return { type: 'unary', op: '-', operand: merged.length === 1 ? merged[0] : productChain(merged) };
-  if (coeff < 0) return negate(productToNode(-coeff, merged));
+  if (coeff < 0) return { type: 'unary', op: '-', operand: productToNode(-coeff, merged) };
   return { type: 'binary', op: '*', left: num(coeff), right: merged.length === 1 ? merged[0] : productChain(merged) };
 }
 

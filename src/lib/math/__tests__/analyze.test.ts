@@ -192,3 +192,19 @@ describe('analysis: parameters', () => {
     expect(check).toBeCloseTo(18);
   });
 });
+
+describe('analysis: no stack overflow on negated product derivatives (regression)', () => {
+  it('handles cos(kx) (derivative -k·sin(kx))', () => {
+    expect(analyze('y = cos(3x)').derivativeLatex).toBeTruthy();
+    expect(analyze('y = cos(999999x)').derivativeLatex).toBeTruthy();
+  });
+  it('handles cos(3x) + 2sin(x)', () => {
+    expect(analyze('y = cos(3x) + 2sin(x)').derivativeLatex).toBeTruthy();
+  });
+  it('handles -2sin(x)', () => {
+    expect(analyze('y = -2sin(x)').derivativeLatex).toBeTruthy();
+  });
+  it('handles -x² + 4', () => {
+    expect(analyze('y = -x^2 + 4').derivativeLatex).toBeTruthy();
+  });
+});

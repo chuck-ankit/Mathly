@@ -62,8 +62,10 @@ export function sampleCurve(
   if (!(width > 0) || !Number.isFinite(width)) return [];
 
   const jumpFactor = opts.jumpFactor ?? 8;
-  const maxDepth = opts.maxDepth ?? 15;
-  const maxPoints = opts.maxPoints ?? 250_000;
+  // Point budgets are chosen for screen resolution: a 1200px-wide canvas
+  // needs well under ~25k points; anything more is pure CPU/GC burn.
+  const maxDepth = opts.maxDepth ?? 12;
+  const maxPoints = opts.maxPoints ?? 25_000;
 
   const baseN = Math.min(1200, Math.max(300, Math.round(width / 0.02)));
   const step = width / baseN;

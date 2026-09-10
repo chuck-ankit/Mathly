@@ -53,6 +53,13 @@ export class GraphEngine {
   private box: ScreenBox = { width: 0, height: 0 };
   private dpr = 1;
 
+  // Static layers (grid, curves, markers, intersections) render into an
+  // offscreen canvas. Interactions only blit that layer + draw the hover,
+  // so pan/zoom/hover cost is constant regardless of point count.
+  private base: HTMLCanvasElement;
+  private baseCtx: CanvasRenderingContext2D | null;
+  private baseDirty = true;
+
   viewport: Viewport = { xmin: -10, xmax: 10, ymin: -7, ymax: 7 };
   showGrid = true;
   curves: CurveRender[] = [];
@@ -77,6 +84,8 @@ export class GraphEngine {
     const ctx = canvas.getContext('2d');
     if (!ctx) throw new Error('Canvas 2D context unavailable');
     this.ctx = ctx;
+    this.base = document.createElement('canvas');
+    this.baseCtx = this.base.getContext('2d');
     this.attachEvents();
     this.lastTime = performance.now();
     this.loop();
@@ -94,12 +103,18 @@ export class GraphEngine {
     this.canvas.height = Math.max(1, Math.round(height * this.dpr));
     this.canvas.style.width = `${width}px`;
     this.canvas.style.height = `${height}px`;
+    if (this.base) {
+      this.base.width = this.canvas.width;
+      this.base.height = this.canvas.height;
+    }
+    this.baseDirty = true;
     this.dirty = true;
   }
 
   setViewport(vp: Viewport): void {
     this.viewport = vp;
     this.dirty = true;
+    this.baseDirty = true;
   }
 
   setCurves(curves: CurveRender[]): void {
@@ -112,21 +127,25 @@ export class GraphEngine {
       return { ...c, drawAnim: 0 };
     });
     this.dirty = true;
+    this.baseDirty = true;
   }
 
   setMarkers(markers: (GraphMarker & { color: string; curveId: string })[]): void {
     this.markers = markers;
     this.dirty = true;
+    this.baseDirty = true;
   }
 
   setIntersections(pts: IntersectionPoint[]): void {
     this.intersections = pts;
     this.dirty = true;
+    this.baseDirty = true;
   }
 
   setGridVisible(visible: boolean): void {
     this.showGrid = visible;
     this.dirty = true;
+    this.baseDirty = true;
   }
 
   clearHover(): void {
@@ -207,6 +226,7 @@ export class GraphEngine {
         animating = true;
       }
     }
+    if (animating) this.baseDirty = true;
     if (animating || this.dirty) {
       this.draw();
       this.dirty = false;
@@ -219,20 +239,37 @@ export class GraphEngine {
     const { ctx, box, dpr } = this;
     if (box.width === 0 || box.height === 0) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, box.width, box.height);
 
-    const bg = getCSSVar('--graph-bg', '#0c1224');
-    ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, box.width, box.height);
-
-    this.drawGrid();
-    this.drawCurves();
-    this.drawMarkers();
-    this.drawIntersections();
+    // Rebuild the static base layer only when something in it changed;
+    // interactions just blit it and draw the hover overlay on top.
+    if (this.baseDirty) {
+      this.renderBase();
+      this.baseDirty = false;
+    }
+    ctx.drawImage(this.base, 0, 0, box.width, box.height);
     this.drawHover();
   }
 
-  private drawGrid(): void {
-    const { ctx, box, viewport: vp } = this;
+  private renderBase(): void {
+    const base = this.baseCtx;
+    if (!base) return;
+    const { box, dpr } = this;
+    base.setTransform(dpr, 0, 0, dpr, 0, 0);
+    base.clearRect(0, 0, box.width, box.height);
+
+    const bg = getCSSVar('--graph-bg', '#0c1224');
+    base.fillStyle = bg;
+    base.fillRect(0, 0, box.width, box.height);
+
+    this.drawGrid(base);
+    this.drawCurves(base);
+    this.drawMarkers(base);
+    this.drawIntersections(base);
+  }
+
+  private drawGrid(ctx: CanvasRenderingContext2D): void {
+    const { box, viewport: vp } = this;
     if (!this.showGrid) {
       // Still draw the axes
       const axisLine = getCSSVar('--axis-line', 'rgba(200,210,240,0.5)');
@@ -341,8 +378,8 @@ export class GraphEngine {
     }
   }
 
-  private drawCurves(): void {
-    const { ctx, box, viewport: vp } = this;
+  private drawCurves(ctx: CanvasRenderingContext2D): void {
+    const { box, viewport: vp } = this;
     for (const curve of this.curves) {
       const anim = curve.drawAnim ?? 1;
       if (!anim) continue;
@@ -383,8 +420,8 @@ export class GraphEngine {
     }
   }
 
-  private drawMarkers(): void {
-    const { ctx, box, viewport: vp } = this;
+  private drawMarkers(ctx: CanvasRenderingContext2D): void {
+    const { box, viewport: vp } = this;
     const t = performance.now() / 1000;
     // Skip markers that would pile on top of an already-drawn one (e.g. a
     // double root coinciding with a vertex) so symbols never visually merge.
@@ -423,8 +460,8 @@ export class GraphEngine {
     }
   }
 
-  private drawIntersections(): void {
-    const { ctx, box, viewport: vp } = this;
+  private drawIntersections(ctx: CanvasRenderingContext2D): void {
+    const { box, viewport: vp } = this;
     for (const p of this.intersections) {
       if (p.x < vp.xmin || p.x > vp.xmax || p.y < vp.ymin || p.y > vp.ymax) continue;
       const sp = dataToScreen(vp, box, p.x, p.y);

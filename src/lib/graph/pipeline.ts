@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 import { parse } from '../math/parser';
 import { MathNode, MathParseError, ParseIssue } from '../math/types';
 import { analyzeExpression, AnalysisResult, intersections } from '../math/analyze';
-import { makeEvaluator, sampleCurve, Viewport } from '../math/sample';
+import { makeEvaluator, sampleCurve, SampleOptions, Viewport } from '../math/sample';
 import { defaultParamValue } from '../math/evaluator';
 import { CurveSegment } from '../math/sample';
 
@@ -53,7 +53,8 @@ export function deriveEquation(
   id: string,
   input: string,
   viewport: Viewport,
-  paramOverrides: Record<string, number> = {}
+  paramOverrides: Record<string, number> = {},
+  sampleOptions?: SampleOptions
 ): CurveDerivation {
   try {
     const parsed = parse(input);
@@ -62,7 +63,7 @@ export function deriveEquation(
       params[p] = paramOverrides[p] ?? defaultParamValue(p);
     }
     const evaluate = makeEvaluator(parsed.expression, params);
-    const segments = sampleCurve(evaluate, viewport);
+    const segments = sampleCurve(evaluate, viewport, sampleOptions);
     const analysis = analyzeExpression(parsed.expression, params);
     return {
       ok: true,
@@ -98,12 +99,13 @@ export interface PipelineOptions {
   equations: { id: string; input: string; visible: boolean; colorIndex: number }[];
   viewport: Viewport;
   params: Record<string, Record<string, number>>;
+  sampleOptions?: SampleOptions;
 }
 
-export function usePipeline({ equations, viewport, params }: PipelineOptions): PipelineResult {
+export function usePipeline({ equations, viewport, params, sampleOptions }: PipelineOptions): PipelineResult {
   return useMemo(() => {
     const derivations: CurveDerivation[] = equations.map((eq) =>
-      deriveEquation(eq.id, eq.input, viewport, params[eq.id])
+      deriveEquation(eq.id, eq.input, viewport, params[eq.id], sampleOptions)
     );
     const validCurves: RenderCurve[] = [];
     const colors = new Map<string, number>();
@@ -132,5 +134,5 @@ export function usePipeline({ equations, viewport, params }: PipelineOptions): P
     }
 
     return { curves: derivations, validCurves, intersections: pts };
-  }, [equations, viewport, params]);
+  }, [equations, viewport, params, sampleOptions]);
 }

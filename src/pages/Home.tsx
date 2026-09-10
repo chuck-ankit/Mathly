@@ -37,15 +37,27 @@ const HERO_HINTS: Record<string, string> = {
 export function HomePage() {
   const navigate = useNavigate();
   const [heroInput, setHeroInput] = useState('y = x²');
+  const [heroDebounced, setHeroDebounced] = useState('y = x²');
   const [rotIndex, setRotIndex] = useState(0);
   const [custom, setCustom] = useState(false);
-  const heroEq = custom ? heroInput : HERO_EXAMPLES[rotIndex % HERO_EXAMPLES.length];
+
+  // Debounce live typing so the graph stays responsive while the user edits.
+  useEffect(() => {
+    const t = window.setTimeout(() => setHeroDebounced(heroInput), 300);
+    return () => window.clearTimeout(t);
+  }, [heroInput]);
+
+  const heroEq = custom ? heroDebounced : HERO_EXAMPLES[rotIndex % HERO_EXAMPLES.length];
 
   const equations = useMemo(
     () => [{ id: 'hero', input: heroEq, visible: true, colorIndex: 0 }],
     [heroEq]
   );
-  const pipeline = usePipeline({ equations, viewport: DEFAULT_VIEWPORT, params: {} });
+  const pipeline = usePipeline({
+    equations,
+    viewport: DEFAULT_VIEWPORT,
+    params: {},
+  });
   const curve = pipeline.validCurves[0];
 
   // Rotate examples in the hero
